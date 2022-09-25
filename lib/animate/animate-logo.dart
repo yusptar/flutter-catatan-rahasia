@@ -12,9 +12,6 @@ class AnimatedLogo extends AnimatedWidget {
   Widget build(BuildContext context) {
     final animation = listenable as Animation<double>;
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Catatan Rahasia'),
-      ),
       body: Center(
         child: Opacity(
           opacity: _opacityTween.evaluate(animation),
@@ -43,15 +40,14 @@ class AnimatedLogo extends AnimatedWidget {
   }
 }
 
-class FlutterLogoApp extends StatefulWidget {
-  const FlutterLogoApp({super.key});
+class LogoApp extends StatefulWidget {
+  const LogoApp({super.key});
 
   @override
-  State<FlutterLogoApp> createState() => _LogoAppState();
+  State<LogoApp> createState() => _LogoAppState();
 }
 
-class _LogoAppState extends State<FlutterLogoApp>
-    with SingleTickerProviderStateMixin {
+class _LogoAppState extends State<LogoApp> with SingleTickerProviderStateMixin {
   late Animation<double> animation;
   late AnimationController controller;
 

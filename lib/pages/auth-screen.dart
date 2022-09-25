@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_evaluasi/pages/second-screen.dart';
+import 'package:flutter_evaluasi/pages/notes-screen.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -14,7 +14,7 @@ class _LoginPageState extends State<LoginPage> {
   bool checkValid = true;
   bool passwordHidden = true;
 
-  Future<void> _login() async {
+  void _login() {
     if (_pin.text.isNotEmpty) {
       setState(() {
         if (_pin.text == "240801") {
@@ -23,21 +23,25 @@ class _LoginPageState extends State<LoginPage> {
             context,
             MaterialPageRoute(
               builder: (context) {
-                return const SecondScreen();
+                return const MyNotesPage();
               },
             ),
           );
+          const snackBar = SnackBar(
+            content: Text('Log In Succesfully!'),
+          );
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
         } else {
           checkValid = false;
           const snackBar = SnackBar(
-            content: Text('Oops, something went wrong! check your PIN again.'),
+            content: Text('Something wrong, check your PIN again'),
           );
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
         }
       });
     } else {
       const snackBar = SnackBar(
-        content: Text('Input your PIN'),
+        content: Text('Oops, something went wrong!'),
       );
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
@@ -52,20 +56,13 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0.0,
-        title: Text(
-          'Login Page',
-          style: Theme.of(context).appBarTheme.titleTextStyle,
-        ),
-      ),
       body: Center(
         child: Container(
           padding: const EdgeInsets.only(right: 20.0, left: 20.0),
           child: ListView(
             children: [
               Container(
-                margin: const EdgeInsets.only(top: 10),
+                margin: const EdgeInsets.only(top: 80),
                 child: const Image(
                   image: AssetImage('CR.png'),
                   width: 120,
@@ -76,7 +73,7 @@ class _LoginPageState extends State<LoginPage> {
                 obscureText: passwordHidden,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
-                  hintText: "Masukkan Pin Anda",
+                  labelText: "Masukkan PIN Anda",
                   suffixIcon: IconButton(
                     onPressed: () {
                       _showPassword();

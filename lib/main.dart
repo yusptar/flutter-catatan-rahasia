@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'animate/flutter-logo.dart';
-import 'pages/first-screen.dart';
+import 'animate/animate-logo.dart';
+import 'pages/auth-screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/login': (context) => const LoginPage(),
       },
-      home: const FlutterLogoApp(),
+      home: const LogoApp(),
     );
   }
 }
